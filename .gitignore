@@ -1,0 +1,20 @@
+# Python-specific files
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment and configuration files
+.env
+config.json
+
+# System files
+.DS_Store
+Thumbs.db
+
+# VSCode files
+.vscode/
+
+cache-directory
+
+#Additional tools
+wmt.*

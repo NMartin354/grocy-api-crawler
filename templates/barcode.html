@@ -1,0 +1,57 @@
+<!-- templates/barcode.html -->
+
+    <div class="form-group">
+        <form id="barcodeForm" action="/send_scan" method="POST">
+            <input type="text" id="barcode" name="barcode" class="form-control" placeholder="Scan or enter barcode..." onchange="this.form.submit()">
+        </form>
+        <!-- Buttons Row -->
+        <div class="buttons-container">
+            <div style="margin-left: 6px;">
+                <!-- Button 0 -->
+                <form action="/send_scan" method="POST" style="display: inline;">
+                    <input type="hidden" name="state" value="1">
+                    <i class="fas fa-utensils"><button type="submit" class="btn-state" title="Consume">🍴</button></i>
+                </form>
+
+                <!-- Button 1 -->
+                <form action="/send_scan" method="POST" style="display: inline;">
+                    <input type="hidden" name="state" value="1">
+                    <button type="submit" class="btn-state" title="Consume Spoiled">🗑️</button>
+                </form>
+
+                <!-- Button 2 -->
+                <form action="/send_scan" method="POST" style="display: inline;">
+                    <input type="hidden" name="state" value="2">
+                    <button type="submit" class="btn-state" title="Purchase">🛒</button>
+                </form>
+
+                <!-- Button 3 -->
+                <form action="/send_scan" method="POST" style="display: inline;">
+                    <input type="hidden" name="state" value="3">
+                    <button type="submit" class="btn-state" title="Open">📦</button>
+                </form>
+
+                <!-- Button 4 -->
+                <form action="/send_scan" method="POST" style="display: inline;">
+                    <input type="hidden" name="state" value="4">
+                    <button type="submit" class="btn-state" title="Get Stock">🏬</button>
+                </form>
+
+                <!-- Button 5 -->
+                <form action="/send_scan" method="POST" style="display: inline;">
+                    <input type="hidden" name="state" value="5">
+                    <button type="submit" class="btn-state" title="Add to Stock List">➕</button>
+                </form>
+
+                <!-- Button 6 -->
+                <form action="/send_scan" method="POST" style="display: inline;">
+                    <input type="hidden" name="state" value="6">
+                    <button type="submit" class="btn-state" title="Consume All" icon="">🍽️</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- JavaScript for Button Functionality -->
+

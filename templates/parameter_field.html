@@ -1,0 +1,37 @@
+<!-- templates/parameter_field.html -->
+<div class="mb-3 {% if param.required %}required-field{% endif %}">
+    <label for="{{ param.name | default('') }}" class="form-label">{{ param.name | default('') }}</label>
+
+    {% if param.name == 'productId' and select_data.get('products') %}
+        <select name="{{ param.name }}" id="{{ param.name }}" class="form-control">
+            <option value="">-- Select a Product --</option>
+            {% for product in select_data['products'] %}
+                <option value="{{ product.id }}">{{ product.name }}</option>
+            {% endfor %}
+        </select>
+    {% elif param.name == 'recipeId' and select_data.get('recipes') %}
+        <select name="{{ param.name }}" id="{{ param.name }}" class="form-control">
+            <option value="">-- Select a Recipe --</option>
+            {% for recipe in select_data['recipes'] %}
+                <option value="{{ recipe.id }}">{{ recipe.name }}</option>
+            {% endfor %}
+        </select>
+    {% elif param.schema.enum %}
+        <select name="{{ param.name }}" id="{{ param.name }}" class="form-control">
+            <option value="">-- Select an Option --</option>
+            {% for option in param.schema.enum %}
+                <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+        </select>
+    {% elif param.schema.type == 'array' %}
+        <textarea name="{{ param.name }}" id="{{ param.name }}" class="form-control" rows="3" placeholder="{{ param.description | default('') }}"></textarea>
+    {% elif param.schema.type == 'integer' %}
+        <input type="number" name="{{ param.name }}" id="{{ param.name }}" class="form-control" placeholder="Enter a number" {% if param.required %}required{% endif %}>
+    {% else %}
+        <input type="text" name="{{ param.name }}" id="{{ param.name }}" class="form-control" placeholder="{{ param.description | default('') }}" {% if param.required %}required{% endif %}>
+    {% endif %}
+
+    {% if param.description %}
+        <small class="help-text">{{ param.description | safe }}</small>
+    {% endif %}
+</div>

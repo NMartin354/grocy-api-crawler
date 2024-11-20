@@ -1,0 +1,58 @@
+<!-- templates/index.html -->
+{% extends "base.html" %}
+
+{% block content %}
+
+    <!-- Endpoint Selection Form -->
+    <form id="endpointForm" action="/" method="GET" class="mb-4">
+        <div class="form-group">
+            <label for="endpoint">Select Endpoint:</label>
+            <select name="endpoint" id="endpoint" class="form-control" onchange="this.form.submit()">
+                <option value="">-- Select an endpoint --</option>
+                {% for category, endpoints in grouped_end.items() %}
+                    <optgroup label="{{ category }}" class="optgroup-label">
+                        {% for ep in endpoints %}
+                            <option value="{{ ep.method }} {{ ep.path }}"
+                                {% if method == ep.method and endpoint == ep.path %}selected{% endif %}>
+                                {{ ep.method }} {{ ep.path }} - {{ ep.summary }}
+                            </option>
+                        {% endfor %}
+                    </optgroup>
+                {% endfor %}
+            </select>
+        </div>
+    </form>
+    <!-- Parameters Form (included if method and endpoint are selected) -->
+    {% if method and endpoint %}
+    <div id="parametersContainer">
+        <h2>{{ method | default('') }} {{ endpoint | default('') }}</h2>
+        <p>Please provide the required parameters below.</p>
+        <form id="parametersForm" action="/execute_api_call" method="POST">
+            <input type="hidden" name="method" value="{{ method | default('') }}">
+            <input type="hidden" name="endpoint" value="{{ endpoint | default('') }}">
+        
+            {% for param in parameters %}
+                <!-- Include the parameter field template for each parameter -->
+                {% include 'parameter_field.html' %}
+            {% endfor %}
+        
+            <button type="submit" class="submit-button">Execute</button>
+        </form>
+    </div>
+    {% endif %}
+    <!-- Result or Error Messages -->
+    {% if result %}
+    <div id="resultSection">
+        <div class="alert alert-danger" role="alert">
+            <strong>Error:</strong> {{ result }}
+        </div>
+    </div>
+    {% endif %}
+    {% if error %}
+    <div id="errorSection"></div>
+        <div class="alert alert-danger" role="alert">
+            <strong>Error:</strong> {{ error }}
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

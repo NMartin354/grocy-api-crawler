@@ -1,0 +1,35 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Grocy API Client{% endblock %}</title>
+
+    
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+    
+    <!-- HTML5 Shiv for IE8 support (optional) -->
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div id="barcodeContainer">
+        {% include "barcode.html" %}
+    </div>
+    <div class="container">
+        <div class="header">
+            <h1>Grocy API Client</h1>
+            <p>Interact seamlessly with your Grocy API.</p>
+        </div>
+        
+        {% block content %}{% endblock %}
+    </div>
+    
+    <!-- jQuery, Popper.js, and Bootstrap JS -->
+
+    
+    {% block scripts %}{% endblock %}
+</body>
+</html>
