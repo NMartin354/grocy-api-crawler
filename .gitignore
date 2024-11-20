@@ -14,7 +14,8 @@ Thumbs.db
 # VSCode files
 .vscode/
 
-cache-directory
+cache-directory/
+flask_session/
 
 #Additional tools
 wmt.*
