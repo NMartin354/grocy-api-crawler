@@ -1,3 +1,4 @@
+
 from flask import Flask, request, render_template, redirect, url_for, jsonify, session
 import jsonref
 import requests
@@ -8,16 +9,21 @@ from flask_cors import CORS
 from urllib.parse import urlencode
 from dotenv import load_dotenv
 import os
-import wmt
-
 app = Flask(__name__)
 cache = Cache(app, config={'CACHE_TYPE': 'SimpleCache', 'CACHE_DEFAULT_TIMEOUT': 3600})  # Cache timeout set to 1 hour
 CORS(app)  # Enable CORS for all routes
+
+
+
+
+
+
 
 # Configure Secret Key and Session Type
 app.config['SECRET_KEY'] =  os.urandom(24)  # Replace with a strong secret key
 app.config['SESSION_TYPE'] = 'filesystem'  # Server-side sessions
 Session(app)
+
 
 load_dotenv()
 
@@ -30,9 +36,6 @@ BARCODE_BUDDY_URL = os.getenv('BARCODE_BUDDY_URL')
 BARCODE_BUDDY_KEY = os.getenv('BARCODE_BUDDY_KEY')
 GROCY_API_BASE_URL = os.getenv('GROCY_API_BASE_URL')
 GROCY_API_KEY = os.getenv('GROCY_API_KEY')
-
-
-
 
 
 def extract_endpoint_info(api_spec):
