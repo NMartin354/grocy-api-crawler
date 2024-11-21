@@ -18,4 +18,4 @@ cache-directory/
 flask_session/
 
 #Additional tools
-wmt.*
+wmt.
